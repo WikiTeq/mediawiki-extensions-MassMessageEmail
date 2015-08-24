@@ -10,7 +10,7 @@
 class ApiMassMessageEmail extends ApiMassMessage {
 
 	public function execute() {
-		if ( !$this->getUser()->isAllowed( 'massmessage') ) {
+		if ( !$this->getUser()->isAllowed( 'massmessage' ) ) {
 			$this->dieUsageMsg( 'permissiondenied' );
 		}
 
@@ -23,7 +23,7 @@ class ApiMassMessageEmail extends ApiMassMessage {
 		}
 
 		//This is the only significant line changed from the parent
-		$count = MassMessageEmail::submit( $this->getContext(), $data );
+		$count = MassMessageEmail::submit( $this->getUser(), $data );
 
 		$this->getResult()->addValue(
 			null,
