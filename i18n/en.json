@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ike Hecht"
+		]
+	},
+	"massmessageemail": "Send mass message",
+	"massmessageemail-desc": "Allows users to easily send a message to a list of users",
+	"massmessageemail-summary": "'''Note:''' For pages in the User Talk namespace, if that user can receive email, an email will be sent instead."
+}

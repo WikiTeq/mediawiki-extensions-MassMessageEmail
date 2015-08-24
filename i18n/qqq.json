@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ike Hecht"
+		]
+	},
+	"massmessageemail": "{{doc-special|MassMessageEmail}",
+	"massmessageemail-desc": "{{desc|name=Mass Message Email|url=http://www.mediawiki.org/wiki/Extension:MassMessageEmail}}",
+	"massmessageemail-summary": "Displayed as a summary at the top of the Special page."
+}
