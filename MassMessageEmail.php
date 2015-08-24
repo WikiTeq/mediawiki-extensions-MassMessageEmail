@@ -35,8 +35,11 @@ $wgAutoloadClasses['SpecialMassMessageEmail'] = __DIR__ . '/includes/SpecialMass
 $wgAutoloadClasses['MassMessageEmail'] = __DIR__ . '/includes/MassMessageEmail.php';
 $wgAutoloadClasses['MassMessageEmailJob'] = __DIR__ . '/includes/job/MassMessageEmailJob.php';
 $wgAutoloadClasses['MassMessageEmailSubmitJob'] = __DIR__ . '/includes/job/MassMessageEmailSubmitJob.php';
+$wgAutoloadClasses['ApiMassMessageEmail'] = __DIR__ . '/includes/ApiMassMessageEmail.php';
 
 $wgSpecialPages['MassMessageEmail'] = 'SpecialMassMessageEmail';
+
+$wgAPIModules['massmessageemail'] = 'ApiMassMessageEmail';
 
 $wgJobClasses['MassMessageEmailJob'] = 'MassMessageEmailJob';
 $wgJobClasses['MassMessageEmailSubmitJob'] = 'MassMessageEmailSubmitJob';
