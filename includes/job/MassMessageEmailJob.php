@@ -46,11 +46,22 @@ class MassMessageEmailJob extends MassMessageJob {
 				return true;
 			}
 		}
-
 		/* BEGIN MASSMESSAGEEMAIL CODE */
 		if ( $title->getNamespace() == NS_USER || $title->getNamespace() == NS_USER_TALK ) {
 			if ( $user->canReceiveEmail() ) {
-				$status = $user->sendMail( $this->params['subject'], $this->makeText() );
+				// Generate plain text ...
+				$text = $this->makeText();
+				// Make sure we don't send relative links in the email. Shouldn't that be a ParserOption?
+				global $wgArticlePath, $wgServer;
+				$oldArticlePath = $wgArticlePath;
+				$wgArticlePath = $wgServer . $wgArticlePath;
+				$parser = new Parser();
+				$parserOutput = $parser->parse( $text, $this->getTitle(), new ParserOptions() );
+				// ... and also generate HTML from the wikitext, which really makes sense since
+				// we're sending an email
+				$html = $parserOutput->getText();
+				$status = $user->sendMail( $this->params['subject'], array( 'text' => $text, 'html' => $html ) );
+				$wgArticlePath = $oldArticlePath;
 				if ( !$status->isGood() ) {
 					/** @todo This should really be sending a code - not a message */
 					$this->logLocalFailure( $status->getMessage() );
