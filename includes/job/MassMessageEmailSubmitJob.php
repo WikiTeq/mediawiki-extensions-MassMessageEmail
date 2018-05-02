@@ -21,7 +21,8 @@ class MassMessageEmailSubmitJob extends Job {
 	 */
 	public function run() {
 		$data = $this->params['data'];
-		$pages = $this->params['pages'];
+		// This line removes any duplicates. Shouldn't that be done in MassMessage?
+		$pages = array_unique( $this->params['pages'] );
 		$jobsByTarget = array();
 
 		foreach ( $pages as $page ) {
