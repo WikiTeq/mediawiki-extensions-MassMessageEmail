@@ -65,6 +65,9 @@ class MassMessageEmailJob extends MassMessageJob {
 				if ( !$status->isGood() ) {
 					/** @todo This should really be sending a code - not a message */
 					$this->logLocalFailure( $status->getMessage() );
+					// This tells the JobQueue to retry this job based on the claimTTL and
+					// maxTries of the $wgJobTypeConf ( 3600 and 3 respectively by default )
+					return false;
 				}
 				return true;
 			}
